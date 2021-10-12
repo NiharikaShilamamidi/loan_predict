@@ -218,6 +218,12 @@ x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=40
 
 
 import numpy as np
+from sklearn.svm import SVC
+svc=SVC(kernel="linear",C=0.025,random_state=101)
+svc.fit(x_train,np.ravel(y_train))
+pred_svc=svc.predict(x_test)
+
+'''
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import make_classification
@@ -227,7 +233,7 @@ rfc.fit(x_train, np.ravel(y_train))
 pred_rfc=rfc.predict(x_test)
 print(accuracy_score(y_test, pred_rfc))
 
-'''
+
 from sklearn.linear_model import LogisticRegression
 lr=LogisticRegression()
 lr.fit(x_train,np.ravel(y_train))
@@ -253,11 +259,7 @@ dt.fit(x_train,y_train)
 pred_dt=dt.predict(x_test)
 accuracy_score(y_test, pred_dt)
 
-from sklearn.svm import SVC
-svc=SVC(kernel="linear",C=0.025,random_state=101)
-svc.fit(x_train,np.ravel(y_train))
-pred_svc=svc.predict(x_test)
-accuracy_score(y_test, pred_svc)
+
 
 from sklearn.linear_model import SGDClassifier
 sgd=SGDClassifier()
